@@ -20,11 +20,20 @@ app.post("/api/chat", async (req, res) => {
     const chatCompletion = await client.chat.completions.create({
       messages: [
         {
+          role: "system",
+          content: [
+            {
+              type: "text",
+              text: "You are given a image file. This image is not real picture. It is a simple drawing, drawn by Canvas API.",
+            },
+          ],
+        },
+        {
           role: "user",
           content: [
             {
               type: "text",
-              text: "What’s in this image? summarize it within 30 characters",
+              text: "What’s in this image? Please summarize it within 30 characters",
             },
             {
               type: "image_url",
